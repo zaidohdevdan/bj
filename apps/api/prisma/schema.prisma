@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rooms     Room[]   @relation("RoomCreator")
+}
+
+model Room {
+  id        String   @id @default(uuid())
+  status    String   // CREATED, CONNECTED, EXPIRING, EXPIRED, CLOSED
+  creatorId String
+  creator   User     @relation("RoomCreator", fields: [creatorId], references: [id])
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  closedAt  DateTime?
+}
