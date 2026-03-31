@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { LoginSchema } from '@ephemeral/shared';
 import { AuthService } from '../services/auth.service';
+import { PrismaUserRepository } from '../repositories/prisma/prisma-user-repository';
 
-const authService = new AuthService();
+const userRepository = new PrismaUserRepository();
+const authService = new AuthService(userRepository);
 
 export class AuthController {
   async login(req: Request, res: Response): Promise<void> {
     try {
-      // Valida via Zod
       const parseResult = LoginSchema.safeParse(req.body);
       
       if (!parseResult.success) {

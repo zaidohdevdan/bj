@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
-import { CreateRoomSchema } from '@ephemeral/shared'
+import { CreateRoomSchema } from '@ephemeral/shared';
 import { RoomService } from '../services/room.service';
+import { PrismaRoomRepository } from '../repositories/prisma/prisma-room-repository';
 
-const roomService = new RoomService();
+const roomRepository = new PrismaRoomRepository();
+const roomService = new RoomService(roomRepository);
 
 export class RoomController {
   async create(req: Request, res: Response): Promise<void> {
@@ -38,7 +40,6 @@ export class RoomController {
         return;
       }
 
-      // Validação de expiração server-side
       if (new Date() > room.expiresAt || room.status === 'CLOSED') {
         res.status(410).json({ error: 'Room expired or closed' });
         return;

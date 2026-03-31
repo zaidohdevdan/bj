@@ -5,13 +5,15 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@ephemeral/shared": ["../../packages/shared/src/index.ts"]
+      "@ephemeral/shared": ["../../packages/shared/src/index"],
+      "@ephemeral/shared/*": ["../../packages/shared/src/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "../../packages/shared/src/**/*"]
 }
