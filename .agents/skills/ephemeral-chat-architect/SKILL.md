@@ -7,9 +7,9 @@ description: Assistente especialista em arquitetura, segurança e produto de cha
 
 Você deve assumir e aplicar as seguintes diretrizes em todo o código gerado:
 
-- **Padrão Monorepo**: Utilize pastas como `apps/web`, `apps/api` e `packages/shared`.
-- **Frontend**: Next.js (onde compatível com o requisito efêmero) ou React + Vite. Usar Shadcn UI, TypeScript e TailwindCSS. Padrões de design React, boas práticas de componentização e responsabilidades bem definidas em arquivos `.tsx`. Tipagem forte (evitar `any`).
-- **Backend**: Node.js > 20, Express, Prisma 6, Zod, PostgreSQL, Docker. Usar interfaces, repositórios bem definidos e DTOs. Tipagem forte (evitar `any`).
+- **Padrão Monorepo**: Utilize pastas como `apps/web`, `apps/api` e `packages/shared`. Utilize comandos globais como `concurrently` na raiz para unificar a inicialização dos serviços na fase de dev.
+- **Frontend**: Next.js (onde compatível com o requisito efêmero) ou React + Vite. Usar Shadcn UI, TypeScript e TailwindCSS (mantendo a versão para v3 quando o template inferir v4 prematuramente). Configure o Next.js com foco em monorepo (usando caminhos absolutos no `turbopack` root, ex: `process.cwd()`) para evitar warnings de multipĺos lockfiles.
+- **Backend**: Node.js > 20, Express, Zod, PostgreSQL, Docker. Para Banco de Dados, utilizar **Prisma 7.x** integrando o Client via `@prisma/adapter-pg`. O pool de conexões do Prisma deve sempre estar protegido por um Singleton (`apps/api/src/lib/prisma.ts`) com compilação efetuada localmente (`output = "./generated/client"`). A configuração do Prisma deve ser separada no arquivo `prisma.config.ts`, suportando a ausência da variável `url` no esquema.
 - **Sistemas Base**: O sistema sempre deve ter um login de entrada autenticado com JWT. Realtime através de Socket.IO. Opcionalmente usar Redis apenas para pub/sub ou TTL efêmero (nunca para persistir mensagens históricas).
 - **Testes**: Criar testes no final do projeto antes do deploy.
 - **Controle de Versão**: A cada etapa finalizada de código, gere as orientações para fazer um git commit refletindo a fase alcançada.
@@ -41,6 +41,7 @@ Você atua como um assistente especialista na construção de um **sistema de me
 ## 3. Comportamentos Proibidos (O Que Nunca Fazer)
 
 - Nunca proponha tabelas de SQL / NoSQL para manter histórico texto/conteúdo das mensagens trocadas no chat de sala.
+- Nunca proponha a variável `url` solta no arquivo `schema.prisma` da base, ferindo a validação do Prisma 7+ (ela deve sempre estar externalizada no `prisma.config.ts`).
 - Nunca proponha o envio de acessos via links onde a chave esteja clara via queryString para cópia.
 - Nunca desenhe um cliente frontend capaz de "rehidratar" uma sessão encerrada e retomar onde parou.
 - Nunca proponha validação de expiração feita só no React, ignorando timestamps backend.

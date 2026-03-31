@@ -5,5 +5,11 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "dev": "concurrently -c \"cyan,magenta\" \"npm run dev -w @ephemeral/api\" \"npm run dev -w web\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

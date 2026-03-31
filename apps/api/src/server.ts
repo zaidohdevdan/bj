@@ -3,7 +3,7 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client';
+
 
 dotenv.config();
 
@@ -14,7 +14,6 @@ const io = new Server(server, {
     origin: '*',
   }
 });
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
