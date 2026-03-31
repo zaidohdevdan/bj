@@ -3,7 +3,8 @@ import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
-
+import { router } from './routes';
+import { PrismaClient } from '../prisma/generated/client';
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
+
+// Main API Routes
+app.use('/api/v1', router);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', time: new Date() });
