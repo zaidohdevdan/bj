@@ -15,9 +15,12 @@ export class PrismaUserRepository implements IUserRepository {
     });
   }
 
-  async create(username: string): Promise<User> {
+  async create(username: string, passwordHash: string): Promise<User> {
     return prisma.user.create({
-      data: { username }
+      data: { 
+        username,
+        password: passwordHash
+      }
     });
   }
 }

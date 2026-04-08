@@ -10,17 +10,25 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   username  String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  rooms     Room[]   @relation("RoomCreator")
+  rooms         Room[]   @relation("RoomCreator")
+  guestIn       Room[]   @relation("RoomGuest")
 }
 
 model Room {
   id        String   @id @default(uuid())
   status    String   // CREATED, CONNECTED, EXPIRING, EXPIRED, CLOSED
   creatorId String
-  creator   User     @relation("RoomCreator", fields: [creatorId], references: [id])
-  createdAt DateTime @default(now())
+  creator   User      @relation("RoomCreator", fields: [creatorId], references: [id])
+  guestId   String?
+  guest     User?     @relation("RoomGuest", fields: [guestId], references: [id])
+  name            String
+  secretHash      String
+  guestVerifiedAt DateTime?
+  accessCount Int       @default(0)
+  createdAt DateTime  @default(now())
   expiresAt DateTime
   closedAt  DateTime?
 }

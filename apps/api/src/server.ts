@@ -4,7 +4,11 @@ import http from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import { router } from './routes';
-import { PrismaClient } from '../prisma/generated/client';
+import { SocketHandler } from './socket.handler';
+import { RoomService } from './services/room.service';
+import { NotificationService, ConsoleNotificationProvider } from './services/notification.service';
+import { EmailNotificationProvider } from './services/email.provider';
+import { PrismaRoomRepository } from './repositories/prisma/prisma-room-repository';
 
 dotenv.config();
 
@@ -26,16 +30,24 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', time: new Date() });
 });
 
-io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-  
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
-});
+// Setup Socket.io e Notification Provider
+const roomRepository = new PrismaRoomRepository();
+
+// Usa Email (Resend) como canal de notificação — anônimo e gratuito
+const notificationProvider = process.env.RESEND_API_KEY
+  ? new EmailNotificationProvider()
+  : new ConsoleNotificationProvider(); // fallback para dev sem API key
+const notificationService = new NotificationService(notificationProvider);
+const roomService = new RoomService(roomRepository, notificationService);
+app.set('roomService', roomService); // Inject into Express app
+new SocketHandler(io, roomService);
 
 const PORT = process.env.PORT || 3333;
 
-server.listen(PORT, () => {
-  console.log(`Server API is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(PORT, () => {
+    console.log(`Server API is running on port ${PORT}`);
+  });
+}
+
+export { app, server, io };

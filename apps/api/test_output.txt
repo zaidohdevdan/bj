@@ -1,0 +1,79 @@
+
+> @ephemeral/api@1.0.0 test
+> jest test/chat-relay.test.ts
+
+  console.log
+    [Socket] User connected: João (T93TEgDFxLbwn06CAAAC)
+
+      at Namespace.<anonymous> (src/socket.handler.ts:39:15)
+
+  console.log
+    [Socket] User connected: Amigo (wuFRrVQ7uZnI_V3FAAAD)
+
+      at Namespace.<anonymous> (src/socket.handler.ts:39:15)
+
+  console.log
+    [Socket] User disconnecting: João
+
+      at Socket.<anonymous> (src/socket.handler.ts:102:17)
+          at Map.forEach (<anonymous>)
+          at Array.map (<anonymous>)
+
+  console.log
+    [Socket] User disconnected: T93TEgDFxLbwn06CAAAC
+
+      at Socket.<anonymous> (src/socket.handler.ts:106:17)
+          at Map.forEach (<anonymous>)
+          at Array.map (<anonymous>)
+
+  console.log
+    [Socket] User disconnecting: Amigo
+
+      at Socket.<anonymous> (src/socket.handler.ts:102:17)
+          at Map.forEach (<anonymous>)
+          at Array.map (<anonymous>)
+
+  console.log
+    [Socket] User disconnected: wuFRrVQ7uZnI_V3FAAAD
+
+      at Socket.<anonymous> (src/socket.handler.ts:106:17)
+          at Map.forEach (<anonymous>)
+          at Array.map (<anonymous>)
+
+FAIL test/chat-relay.test.ts
+  Socket.io Chat Relay
+    ✕ should relay messages between João and his friend (255 ms)
+
+  ● Socket.io Chat Relay › should relay messages between João and his friend
+
+    Room error on socket 2: Room not found
+
+      105 |
+      106 |     clientSocket2.on('room_error', (err) => {
+    > 107 |       done(new Error(`Room error on socket 2: ${err}`));
+          |            ^
+      108 |     });
+      109 |
+      110 |     clientSocket1.on('room_error', (err) => {
+
+      at Socket.<anonymous> (test/chat-relay.test.ts:107:12)
+      at Socket.Emitter.emit (../../node_modules/@socket.io/component-emitter/lib/cjs/index.js:143:20)
+      at Socket.emitEvent (../../node_modules/socket.io-client/build/cjs/socket.js:558:20)
+      at Socket.onevent (../../node_modules/socket.io-client/build/cjs/socket.js:545:18)
+      at Socket.onpacket (../../node_modules/socket.io-client/build/cjs/socket.js:513:22)
+      at Manager.Emitter.emit (../../node_modules/@socket.io/component-emitter/lib/cjs/index.js:143:20)
+      at ../../node_modules/socket.io-client/build/cjs/manager.js:246:18
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        3.973 s, estimated 5 s
+Ran all test suites matching test/chat-relay.test.ts.
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /home/zaidoh/dsw/bj/apps/api
+npm error workspace @ephemeral/api@1.0.0
+npm error location /home/zaidoh/dsw/bj/apps/api
+npm error command failed
+npm error command sh -c jest test/chat-relay.test.ts

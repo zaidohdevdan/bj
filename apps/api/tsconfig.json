@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "CommonJS",
-    "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -12,7 +11,10 @@
     "baseUrl": ".",
     "paths": {
       "@ephemeral/shared": ["../../packages/shared/src/index"],
-      "@ephemeral/shared/*": ["../../packages/shared/src/*"]
+      "@ephemeral/shared/*": ["../../packages/shared/src/*"],
+      "@ephemeral/shared/schemas": ["../../packages/shared/src/schemas/index"],
+      "@ephemeral/shared/types": ["../../packages/shared/src/types/index"],
+      
     }
   },
   "include": ["src/**/*", "../../packages/shared/src/**/*"]

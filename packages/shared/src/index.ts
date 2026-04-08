@@ -5,11 +5,22 @@ export type RoomStatus = 'CREATED' | 'CONNECTED' | 'EXPIRING' | 'EXPIRED' | 'CLO
 
 // Schemas DTO
 
-// 1. Auth/Login - Somente Apelido (Anônimo)
+// 1. Auth/Login e Registro - Com Senha
 export const LoginSchema = z.object({
   username: z.string().min(3, 'Apelido deve ter no mínimo 3 caracteres').max(30),
+  password: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
 });
 export type LoginDTO = z.infer<typeof LoginSchema>;
+
+export const RegisterSchema = z.object({
+  username: z.string().min(3, 'Apelido deve ter no mínimo 3 caracteres').max(30),
+  password: z.string().min(6, 'Senha deve ter no mínimo 6 caracteres'),
+  confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "As senhas não coincidem",
+  path: ["confirmPassword"],
+});
+export type RegisterDTO = z.infer<typeof RegisterSchema>;
 
 // Resposta Padrão do Login
 export interface LoginResponse {
@@ -24,6 +35,9 @@ export interface LoginResponse {
 export const RoomDurations = [5, 15, 30, 45, 60, 120] as const;
 
 export const CreateRoomSchema = z.object({
+  name: z.string().min(3, 'Nome da sala deve ter no mínimo 3 caracteres').max(50),
+  receiverEmail: z.string().email('E-mail do destinatário inválido').optional(),
+  secret: z.string().min(4, 'A palavra-passe deve ter no mínimo 4 caracteres'),
   // Tempo de duração em minutos
   durationMin: z.union([
     z.literal(5), 
@@ -35,6 +49,11 @@ export const CreateRoomSchema = z.object({
   ]),
 });
 export type CreateRoomDTO = z.infer<typeof CreateRoomSchema>;
+
+export const VerifyRoomKeySchema = z.object({
+  secret: z.string().min(4, 'A palavra-passe deve ter no mínimo 4 caracteres'),
+});
+export type VerifyRoomKeyDTO = z.infer<typeof VerifyRoomKeySchema>;
 
 // JWT Payload Estrutura
 export interface JwtPayloadSession {
