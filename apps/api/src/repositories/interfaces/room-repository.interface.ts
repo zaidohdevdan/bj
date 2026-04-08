@@ -1,4 +1,4 @@
-import { Room } from '../../../prisma/generated/client';
+import { PrismaClient, User, Room } from '@prisma/client';
 import { CreateRoomDTO, RoomStatus } from '@ephemeral/shared';
 
 export interface IRoomRepository {
