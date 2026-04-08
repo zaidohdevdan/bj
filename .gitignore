@@ -1,2 +1,7 @@
 node_modules
 apps/api/prisma/generated
+apps/api/dist/
+apps/api/.wwebjs_auth/
+apps/api/.wwebjs_cache/
+apps/api/test_output.txt
+.env
