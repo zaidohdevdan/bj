@@ -211,7 +211,7 @@ export default function LandingPage() {
                 href="/register"
                 className="group inline-flex items-center justify-center px-10 py-5 rounded-2xl bg-white text-black font-extrabold shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
               >
-                Go go go!
+                Cadastre-se
                 <ShieldCheck size={20} className="ml-3 group-hover:text-primary transition-colors" />
               </Link>
             </div>
