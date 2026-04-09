@@ -26,6 +26,10 @@ app.use(express.json());
 // Main API Routes
 app.use('/api/v1', router);
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Ephemeral Chat API is running.', status: 'ok' });
+});
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', time: new Date() });
 });
