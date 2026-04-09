@@ -7,6 +7,19 @@ const router = Router();
 const authController = new AuthController();
 const roomController = new RoomController();
 
+// Health check
+router.get('/health', async (req, res) => {
+  try {
+    const { prisma } = await import('../lib/prisma');
+    // Simple query to verify DB connection
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ status: 'ok', database: 'connected', time: new Date() });
+  } catch (error) {
+    console.error('Health check failed:', error);
+    res.status(503).json({ status: 'error', database: 'disconnected', time: new Date() });
+  }
+});
+
 // Auth Routes (Public)
 router.post('/auth/register', (req, res) => authController.register(req, res));
 router.post('/auth/login', (req, res) => authController.login(req, res));

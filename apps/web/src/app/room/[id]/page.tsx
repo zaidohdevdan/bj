@@ -346,7 +346,7 @@ export default function RoomPage() {
           description={errorDialog.message}
           footer={
             <div className="flex justify-end w-full">
-              <Button variant="default" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
+              <Button variant="primary" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
                 Tentar Novamente
               </Button>
             </div>
@@ -403,7 +403,7 @@ export default function RoomPage() {
         description={errorDialog.message}
         footer={
           <div className="flex justify-end w-full">
-            <Button variant="default" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
+            <Button variant="primary" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
               Tentar Novamente
             </Button>
           </div>
@@ -572,7 +572,7 @@ export default function RoomPage() {
         description={errorDialog.message}
         footer={
           <div className="flex justify-end w-full">
-            <Button variant="default" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
+            <Button variant="primary" onClick={() => setErrorDialog({ isOpen: false, message: '' })}>
               Tentar Novamente
             </Button>
           </div>

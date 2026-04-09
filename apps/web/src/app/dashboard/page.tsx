@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import api from '@/lib/api';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/Button';
+import { ServiceStatus } from '@/components/ui/ServiceStatus';
 import { Input } from '@/components/ui/Input';
 import { Plus, LogOut, MessageSquare, Clock, Globe, ShieldAlert, Trash2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -131,7 +132,11 @@ export default function DashboardPage() {
           </div>
           <div>
             <h2 className="font-bold">Agente {user.username}</h2>
-            <p className="text-[10px] uppercase tracking-tighter text-muted-foreground font-bold">Protocolo Ativado</p>
+            <div className="flex items-center space-x-2">
+              <p className="text-[10px] uppercase tracking-tighter text-muted-foreground font-bold">Protocolo Ativado</p>
+              <span className="text-[10px] text-white/10">•</span>
+              <ServiceStatus />
+            </div>
           </div>
         </div>
         <Button variant="ghost" className="p-2 h-auto rounded-xl" onClick={logout}>

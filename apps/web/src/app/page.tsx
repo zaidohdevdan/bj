@@ -5,6 +5,7 @@ import { motion, Variants } from 'framer-motion';
 import { Shield, Zap, Lock, EyeOff, CameraOff, ShieldCheck, FileKey, Trash2, Mail } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { GlassCard } from '@/components/ui/GlassCard';
+import { ServiceStatus } from '@/components/ui/ServiceStatus';
 
 export default function LandingPage() {
   const containerVariants: Variants = {
@@ -67,9 +68,8 @@ export default function LandingPage() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
-              <Shield size={14} />
-              <span>Plataforma Clandestina Segura</span>
+            <div className="mb-4">
+              <ServiceStatus />
             </div>
             <div className="flex justify-center mb-6">
               <Logo size="xl" />
