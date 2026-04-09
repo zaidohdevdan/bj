@@ -204,7 +204,7 @@ export default function LandingPage() {
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
             
             <h2 className="text-3xl md:text-5xl font-extrabold max-w-2xl mx-auto tracking-tight relative z-10 text-white">
-              Converse <br className="hidden md:block"/> com privacidade real.
+              Converse com<br className="hidden md:block"/> privacidade real.
             </h2>
             <div className="pt-6 flex justify-center relative z-10">
               <Link
