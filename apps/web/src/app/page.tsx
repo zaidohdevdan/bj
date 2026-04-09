@@ -55,7 +55,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="flex-1 overflow-x-hidden overflow-y-auto custom-scrollbar bg-[#020617] relative selection:bg-primary/30">
+    <div className="flex-1 relative w-full bg-[#020617] selection:bg-primary/30 pb-12">
       
       {/* ANIMATED BACKGROUND MESH */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
