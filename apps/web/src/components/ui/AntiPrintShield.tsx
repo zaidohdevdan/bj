@@ -63,7 +63,8 @@ export function AntiPrintShield({ children, username }: Props) {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex flex-col flex-1 select-none" style={{ WebkitUserSelect: 'none', userSelect: 'none' }}>
+    <div className="relative w-full h-full flex flex-col flex-1 select-none"
+      style={{ WebkitUserSelect: 'none', userSelect: 'none' }}>
       
       {/* 4. Marca D'água Tiled Persecutória Oculta (Rendeizada atrás das msgs) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex flex-wrap justify-center content-center gap-14 opacity-[0.03]">

@@ -75,7 +75,7 @@ export default function LandingPage() {
               <Logo size="xl" />
             </div>
             <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Mensagens que desaparecem. <br className="hidden md:block"/>
+              Mensagens que desaparecem. <br className="hidden md:block" />
               Sem rastros, sem histórico, apenas privacidade verdadeira.
             </p>
           </motion.div>
@@ -86,17 +86,17 @@ export default function LandingPage() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="w-full max-w-sm space-y-4"
           >
-            <Link 
-              href="/register" 
+            <Link
+              href="/register"
               className="flex items-center justify-center w-full py-4 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 transition-transform active:scale-[0.98] hover:brightness-110"
             >
-              Iniciar Missão
+              Cadastre-se
             </Link>
-            <Link 
-              href="/login" 
+            <Link
+              href="/login"
               className="flex items-center justify-center w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-semibold backdrop-blur-md transition-transform active:scale-[0.98] hover:bg-white/10"
             >
-              Acesso Agente
+              Acesse sua conta
             </Link>
           </motion.div>
 
@@ -160,7 +160,7 @@ export default function LandingPage() {
         </section>
 
         {/* FOOTER CALL TO ACTION */}
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -172,8 +172,8 @@ export default function LandingPage() {
             </div>
             <h2 className="text-2xl md:text-4xl font-bold max-w-xl mx-auto">Pronto para conversas que não deixam rastros?</h2>
             <div className="pt-4 flex justify-center">
-              <Link 
-                href="/register" 
+              <Link
+                href="/register"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white text-black font-extrabold shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
               >
                 Criar sua primeira Sala Segura
