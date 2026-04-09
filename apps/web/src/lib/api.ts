@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://bj-kl2b.onrender.com/api/v1',
 });
 
 // Interceptor to inject token
