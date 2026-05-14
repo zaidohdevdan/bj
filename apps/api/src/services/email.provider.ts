@@ -10,7 +10,7 @@ export class EmailNotificationProvider implements INotificationProvider {
     if (!apiKey) throw new Error('[Email] RESEND_API_KEY não configurada no .env');
 
     this.resend = new Resend(apiKey);
-    this.fromAddress = process.env.FROM_EMAIL || 'onboarding@resend.dev';
+    this.fromAddress = process.env.FROM_EMAIL || '<anything>@xeoshoi.resend.app';
   }
 
   async sendSMS(to: string, message: string, _expiresAt?: Date): Promise<void> {
